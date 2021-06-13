@@ -1,0 +1,71 @@
+%2D TRIANGLE ROTATION ALONG FIXED POINT
+clc;
+clear all;
+close all;
+x1=input('Enter x1 =');
+x2=input('Enter x2 =');
+x3=input('Enter x3 =');
+
+y1=input('Enter y1 =');
+y2=input('Enter y2 =');
+y3=input('Enter y3 =');
+
+h=input('Enter x co-ordinate of fixed point');
+k=input('Enter y co-ordinate of fixed point');
+
+angle=input('Enter angle of rotation:');
+a=angle*pi/180;
+
+p = [x1 x2 x3 ; y1 y2 y3 ; 1 1 1]
+
+axis([-10 10 -10 10]);
+subplot(2, 2 , 1)
+axis square;
+axis([-10 10 -10 10]);
+plot ([x1 x2 x3 x1],[y1 y2 y3 y1] , 'r');
+xlabel('x axis');
+ylabel('y axis');
+zlabel('z axis');
+title('INITIAL TRIANGLE');
+grid on;
+hold on;
+
+subplot(2, 2 , 2)
+axis square;
+axis([-10 15 -10 15]);
+xlabel('x axis');
+ylabel('y axis');
+zlabel('z axis');
+title('TRANSLATED TOWARDS ORIGIN');
+grid on;
+hold on;
+T=[1 0 h; 0 1 k; 0 0 1];
+P=T*p;
+plot([P(1,1) P(1,2) P(1,3) P(1,1)],[P(2,1) P(2,2) P(2,3) P(2,1)], 'b');
+
+subplot(2, 2 , 3)
+axis square;
+axis([-10 15 -10 15]);
+xlabel('x axis');
+ylabel('y axis');
+zlabel('z axis');
+title('ROTATED ON A GIVEN ANGLE');
+grid on;
+hold on;
+R=[cos(a) -sin(a) 0; sin(a) cos(a) 0; 0 0 1];
+P=R*P;
+plot([P(1,1) P(1,2) P(1,3) P(1,1)],[P(2,1) P(2,2) P(2,3) P(2,1)], 'g');
+
+subplot(2, 2 , 4)
+axis square;
+axis([-10 15 -10 15]);
+xlabel('x axis');
+ylabel('y axis');
+zlabel('z axis');
+title(['TRANSLATED REVERSE']);
+grid on;
+hold on;
+Tr=[1 0 -h; 0 1 -k; 0 0 1];
+P=Tr*P;
+plot([P(1,1) P(1,2) P(1,3) P(1,1)],[P(2,1) P(2,2) P(2,3) P(2,1)], 'm');
+
